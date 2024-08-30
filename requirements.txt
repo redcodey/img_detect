@@ -1,0 +1,9 @@
+torch
+numpy
+torchvision
+pycocotools
+fastapi
+uvicorn
+python-multipart
+opencv-python
+gunicorn

@@ -1,0 +1,21 @@
+from typing import Optional
+#import controller.ConnectionManager as WSCM
+from ws.ws_socket import WSMessage
+import asyncio
+#import controller.Utils as Utils
+#from controller.models.FaceTran import FaceTranManager,FaceTran
+from ws import WSWorker, WSMessage, WSServer
+
+class CameraWorker(WSWorker):
+    def __init__(self) -> None:
+        super().__init__()
+    async def process(self, ws_server, ws_socket, message: Optional[WSMessage] ):
+        print('ps', ws_socket, message)
+        ws_server.broadcast(message)
+        
+#wsManager = WSCM.ConnectionManager()
+#ftManager = FaceTranManager()
+    
+sever = WSServer()
+sever.add_worker("camera",CameraWorker())
+asyncio.run(sever.run(port = 9002))
